@@ -40,4 +40,13 @@ class DescuentoFronteraTest {
          */
         assertEquals(10, descuento.porcentaje(101));
     }
+
+    @Test
+    void totalCentavosSinDescuento() {
+        long precioUnitario = 1000; // $10.00
+        int unidades = 50;
+        long esperado = precioUnitario * unidades;
+        long obtenido = descuento.totalCentavos(precioUnitario, unidades);
+        assertEquals(esperado, obtenido);
+    }
 }
