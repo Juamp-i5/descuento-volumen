@@ -1,52 +1,42 @@
-# Semana 04 · P1 — El build sin IDE (descuento-volumen)
+# Semana 05 · P3 — AAA + assertThrows: el nivel de 15 %
 
-Proyecto Java independiente. No usa contenedores, no usa el proyecto del
-semestre y no requiere IDE: todo se ejecuta desde la terminal.
+Continúa sobre **el mismo repositorio de la Semana 04** (P1 + P2 ya resueltas).
+No crees un proyecto nuevo. Este ZIP trae únicamente los dos archivos que
+cambian esta semana; el resto de tu repo se queda igual.
 
-**Las instrucciones completas, las preguntas de predicción y el formato de
-entrega están en el documento `S04_P1_Practica.docx` que viene en este
-mismo ZIP.** Este README es sólo el mapa del proyecto.
+**Las instrucciones completas, las preguntas de diagnóstico y el formato de
+entrega están en el documento `S05_P1_Practica.docx`** que viene en este
+mismo ZIP. Este README es sólo el mapa del proyecto.
 
-## Requisitos
+## Qué traes de este ZIP a tu repositorio
 
-- JDK 21 (`java -version` debe reportar 21)
-- Apache Maven 3.9 o superior (`mvn -v`)
-- La terminal abierta en la carpeta que contiene `pom.xml`
+| Archivo de este ZIP | Dónde va en tu repositorio | Qué hace |
+|---|---|---|
+| `Descuento.java` | `src/main/java/mx/itson/devops/descuento/` (reemplaza el tuyo) | Agrega el nivel de 15 % — con un defecto a propósito |
+| `DescuentoNivelesTest.java` | `src/test/java/mx/itson/devops/descuento/` | Pruebas AAA; 3 completas, 2 con TODO |
 
-## Mapa del proyecto
+## Mapa del proyecto (después de copiar)
 
 ```
 descuento-volumen/
-|-- pom.xml                 identidad, dependencias y plugins
-|-- .gitignore              target/ nunca se versiona
+|-- pom.xml
+|-- .gitignore
 `-- src/
     |-- main/java/mx/itson/devops/descuento/
-    |   |-- Descuento.java
-    |   `-- DescuentoSmokeTest.java   <-- algo no está en su lugar
+    |   `-- Descuento.java                   <-- nuevo nivel, con un defecto
     `-- test/java/mx/itson/devops/descuento/
-        `-- (vacío por ahora)
+        |-- DescuentoSmokeTest.java          (Semana 04, sin cambios)
+        |-- DescuentoFronteraTest.java        (Semana 04, sin cambios)
+        `-- DescuentoNivelesTest.java         <-- completa los TODO
 ```
 
 ## Comandos de la práctica
 
 ```bash
-mvn -B clean compile
 mvn -B test
-mvn -B package
-mvn -B verify
-mvn -B dependency:tree
 ```
 
 ## Entrega
 
-Repositorio Git (público o compartido con el profesor) + el .docx llenado.
-Fecha límite: **sábado 26 de septiembre, 5:00 a.m.**
-
-## Plan B sin Internet
-
-Maven descarga plugins y dependencias la primera vez. Con el repositorio local
-ya poblado se puede trabajar sin conexión:
-
-```bash
-mvn -o -B clean verify
-```
+Repositorio actualizado + el .docx llenado.
+Fecha límite: **sábado, 5:00 a.m.**
