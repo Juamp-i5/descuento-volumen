@@ -31,7 +31,10 @@ class DescuentoParametrizadoTest {
             "1001, 20",
             "1999, 20",
             "2000, 25",
-            "2001, 25"
+            "2001, 25",
+            "4999, 30",
+            "5000, 30",
+            "5001, 30"
     // TODO(alumno, Paso 2): agrega aqui "1000, 20" y "1001, 20"
     })
     void aplicaElPorcentajeSegunElNivel(int unidades, int porcentajeEsperado) {
