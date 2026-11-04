@@ -18,7 +18,10 @@ public class Handler {
         int porcentaje = descuento.porcentaje(unidades);
         long total = descuento.totalCentavos(precio, unidades);
         // 3. Regresar la respuesta: Lambda la convierte a JSON
-        return Map.of("unidades", unidades, "porcentaje", porcentaje,
-                "totalCentavos", total);
+        return Map.of(
+                "unidades", unidades,
+                "porcentaje", porcentaje,
+                "totalCentavos", total,
+                "version", System.getenv().getOrDefault("APP_VERSION", "manual"));
     }
 }
