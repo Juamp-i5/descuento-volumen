@@ -8,8 +8,8 @@ mismo ZIP. Aquí sólo va el archivo que debes copiar a tu repositorio.
 
 ## Qué traes de este ZIP a tu repositorio
 
-| Archivo de este ZIP | Dónde va en tu repositorio |
-|---|---|
+| Archivo de este ZIP               | Dónde va en tu repositorio                 |
+| --------------------------------- | ------------------------------------------ |
 | `DescuentoParametrizadoTest.java` | `src/test/java/mx/itson/devops/descuento/` |
 
 No necesitas tocar `ci.yml`: es el mismo que instalaste en la Práctica 2 de
@@ -32,3 +32,5 @@ Semana 04 y ya corre `mvn -B verify` en cada push / Pull Request.
 
 Link al repositorio/Pull Request con los dos runs + el .docx llenado.
 Fecha límite: **sábado, 5:00 a.m.**
+
+hoas
