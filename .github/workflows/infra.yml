@@ -1,0 +1,67 @@
+# Unidad 3 · Semana 2 · Sesión B
+# Pull Request a main: fmt, validate y plan (nadie toca AWS todavía).
+# Push a main (merge): el mismo flujo y además apply del plan revisado.
+name: Infraestructura (Terraform)
+
+on:
+  pull_request:
+    branches: [main]
+    paths: ['infra/**', 'src/**', 'pom.xml']
+  push:
+    branches: [main]
+    paths: ['infra/**', 'src/**', 'pom.xml']
+
+permissions:
+  id-token: write
+  contents: read
+
+# Nunca dos ejecuciones de Terraform a la vez sobre el mismo estado.
+concurrency:
+  group: terraform
+  cancel-in-progress: false
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: infra
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Java 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Compilar el .jar (pruebas incluidas)
+        working-directory: .
+        run: mvn -B package
+
+      - name: Credenciales AWS por OIDC
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          role-to-assume: ${{ vars.AWS_TERRAFORM_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Instalar Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Formato
+        run: terraform fmt -check
+
+      - name: Init
+        run: terraform init -input=false
+
+      - name: Validate
+        run: terraform validate
+
+      - name: Plan
+        run: terraform plan -input=false -out=tfplan
+
+      - name: Apply (solo al hacer merge a main)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: terraform apply -input=false tfplan
